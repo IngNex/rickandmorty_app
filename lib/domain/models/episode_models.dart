@@ -16,6 +16,7 @@ class Episode {
   List<String>? characters;
   String? url;
   DateTime? created;
+  String? error;
 
   Episode({
     this.id,
@@ -25,6 +26,7 @@ class Episode {
     this.characters,
     this.url,
     this.created,
+    this.error,
   });
 
   factory Episode.fromJson(Map<String, dynamic> json) => Episode(
@@ -38,6 +40,7 @@ class Episode {
         url: json["url"],
         created:
             json["created"] == null ? null : DateTime.parse(json["created"]),
+        error: json["error"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,5 +53,10 @@ class Episode {
             : List<dynamic>.from(characters!.map((x) => x)),
         "url": url,
         "created": created?.toIso8601String(),
+        "error": error,
       };
+
+  Episode.withError(String message) {
+    error = message;
+  }
 }

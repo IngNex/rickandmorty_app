@@ -1,21 +1,44 @@
 import 'package:dio/dio.dart';
 import 'package:rickandmorty/domain/models/character_models.dart';
+import 'package:rickandmorty/domain/models/episode_models.dart';
+//import 'package:http/http.dart' as http;
 
 class ApiProvider {
   final dio = Dio();
-  final String _url = 'https://rickandmortyapi.com/api/character';
-  Future<List<Character>> getCharacters(int page) async {
+  final String url = 'https://rickandmortyapi.com/';
+
+  Future<List<Character>> getCharacters([int page = 1]) async {
     try {
-      Response result =
-          await dio.get(_url, queryParameters: {'page': page.toString()});
+      Response result = await dio.get('$url/api/character?page=$page');
       List<dynamic> characters = result.data['results'];
 
       return characters.map((e) => Character.fromJson(e)).toList();
     } catch (e) {
-      if (e.toString().contains("Socket Exception")) {
-        return [Character.withError("Check your internet connection please")];
-      }
-      return [Character.withError(e.toString())];
+      rethrow;
+    }
+  }
+
+  Future<List<Episode>> getEpisodes(int page) async {
+    try {
+      Response result =
+          await dio.get('$url/api/episode', queryParameters: {'page': page});
+      List<dynamic> characters = result.data['results'];
+
+      return characters.map((e) => Episode.fromJson(e)).toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Character>> getSearchCharacter(String query) async {
+    try {
+      Response result =
+          await dio.get('$url/api/character', queryParameters: {'name': query});
+      List<dynamic> characters = result.data['results'];
+      print(characters);
+      return characters.map((e) => Character.fromJson(e)).toList();
+    } catch (e) {
+      rethrow;
     }
   }
 }
