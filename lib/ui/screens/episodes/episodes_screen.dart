@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/bloc/episodes/episodes_bloc.dart';
-import 'package:rickandmorty/domain/models/episode_models.dart';
 import 'package:rickandmorty/ui/widgets/animation_translate.dart';
 import 'package:rickandmorty/ui/widgets/app_bar_image.dart';
+import 'package:rickandmorty/ui/widgets/episodio_item.dart';
 import 'package:rickandmorty/ui/widgets/loading_widget.dart';
 
 class EpisodesScreen extends StatefulWidget {
@@ -88,29 +88,6 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class EpisodeItem extends StatelessWidget {
-  const EpisodeItem({
-    Key? key,
-    required this.episode,
-  }) : super(key: key);
-
-  final Episode episode;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: ListTile(
-        leading: CircleAvatar(child: Text(episode.id.toString())),
-        title: Text(episode.name!),
-        subtitle: Text(episode.airDate!),
-        trailing: Text(episode.episode!),
       ),
     );
   }

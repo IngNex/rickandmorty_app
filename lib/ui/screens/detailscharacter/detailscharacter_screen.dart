@@ -4,9 +4,9 @@ import 'package:rickandmorty/bloc/charac_episode/charac_episode_bloc.dart';
 import 'package:rickandmorty/domain/models/character_models.dart';
 import 'package:rickandmorty/ui/screens/detailscharacter/widget/animated_displacement.dart';
 import 'package:rickandmorty/ui/screens/detailscharacter/widget/text_span_data.dart';
-import 'package:rickandmorty/ui/screens/episodes/episodes_screen.dart';
 import 'package:rickandmorty/ui/widgets/animation_translate.dart';
 import 'package:rickandmorty/ui/widgets/bottom_pop.dart';
+import 'package:rickandmorty/ui/widgets/episodio_item.dart';
 import 'package:rickandmorty/ui/widgets/loading_widget.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -42,14 +42,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
               left: 0,
               width: size.width,
               height: topCardHeight,
-              child: AnimatedDisplacement(
-                character: widget.character,
+              child: AnimationTranslate(
+                top: false,
+                duration: const Duration(milliseconds: 800),
+                offset: 100.0,
+                child: AnimatedDisplacement(
+                  character: widget.character,
+                ),
               ),
             ),
             const Positioned(
               left: 10,
               top: 10,
-              child: AnimationTranslate(child: BottomPop()),
+              child: AnimationTranslate(top: false, child: BottomPop()),
             ),
             Positioned(
               left: 0,
@@ -61,11 +66,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Row(
-                      children: [
-                        AnimationTranslate(
-                          top: false,
-                          child: Column(
+                    AnimationTranslate(
+                      child: Row(
+                        children: [
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -127,11 +131,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: AnimationTranslate(
-                            top: false,
+                          const SizedBox(width: 10),
+                          Expanded(
                             child: Column(
                               children: [
                                 Card(
@@ -172,14 +173,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: AnimationTranslate(
                         child: Text(
-                          'Episodes:',
+                          'EPISODES:',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -187,6 +188,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                     Expanded(
                       child: AnimationTranslate(
+                        duration: const Duration(milliseconds: 800),
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 500),
                           key: Key(widget.character.id!.toString()),
