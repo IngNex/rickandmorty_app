@@ -45,14 +45,13 @@ dev_dependencies:
 
 ## Función
 
-- Agrege un Splash para que sea amigable
-- El Login es de manera ficticio para poder indicar que se ingresa a la app
-- En el Home tenemos tres 4 botones en los cuales nos dirige a Vista de Character, Episodes, Search Character y ademas un boton de cerrar session.
-- El Vista Characters podremos visualizar todos los character lo cual se esta obteniendo y desplegando de la ApiRest
-- En la Vista Details Character es para poder ver mas detalles de cada Character de Rick and Morty
-- La Vista Episodes podemos visualizar la informacion que se esta obteniendo y desplegando de la ApiRest
-- En la Vista Search Character podemos buscar a un character en especial enbase a su nombre y asi mismo podremos ver mas detalles.
-
+- Agregue un Splash para un diseño amigable.
+- El Login es de manera ficticio para poder indicar que se ingresa a la app.
+- En el Home tenemos cuatro botones en los cuales nos dirige a Vista de Character, Episodes, Search Character y ademas un boton de cerrar session.
+- El Vista Characters podremos visualizar todos los character lo cual se está obteniendo y desplegando de la ApiRest.
+- En la Vista Details Character es para poder ver más detalles de cada Character de Rick and Morty.
+- La Vista Episodes podemos visualizar la información que se está obteniendo y desplegando de la ApiRest.
+- En la Vista Search Character podemos realizar la búsqueda mediante el nombre para poder seleccionar y visualizar más detalles del Character.
 
 ## Evidencia de la App Rick and Morty
 <p align="center">
