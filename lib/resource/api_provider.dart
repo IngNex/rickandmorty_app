@@ -43,7 +43,7 @@ class ApiProvider {
 
   Future<List<Episode>> getEpisodesCharater(Character character) async {
     List<Episode> episodes = [];
-    for (int i = 0; i < character.episode!.length; i++) {
+    for (var i = 0; i < character.episode!.length; i++) {
       final result = await http.get(Uri.parse(character.episode![i]));
       final response = episodeFromJson(result.body);
       episodes.add(response);

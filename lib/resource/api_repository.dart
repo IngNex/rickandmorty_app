@@ -16,6 +16,10 @@ class ApiRepository {
   Future<List<Character>> getSearchCharacter(String query) {
     return _apiProvider.getSearchCharacter(query);
   }
+
+  Future<List<Episode>> getEpisodesCharater(Character character) {
+    return _apiProvider.getEpisodesCharater(character);
+  }
 }
 
 class NetworkError extends Error {}

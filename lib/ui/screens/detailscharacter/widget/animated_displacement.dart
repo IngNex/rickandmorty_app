@@ -75,6 +75,7 @@ class _AnimatedDisplacementState extends State<AnimatedDisplacement>
               right: 100 * (1 - _controller.value),
               child: Text(
                 widget.character.name!,
+                maxLines: 2,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 45,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rickandmorty/bloc/charac_episode/charac_episode_bloc.dart';
 import 'package:rickandmorty/bloc/characters/characters_bloc.dart';
 import 'package:rickandmorty/bloc/episodes/episodes_bloc.dart';
 import 'package:rickandmorty/bloc/search_character/search_character_bloc.dart';
@@ -55,21 +56,22 @@ final GoRouter _route = GoRouter(
           },
         ),
         GoRoute(
-            path: 'search_character',
-            builder: (context, state) {
-              return const SearchCharacterScreen();
-            },
-            routes: [
-              GoRoute(
-                path: 'details',
-                builder: (context, state) {
-                  final character = state.extra as Character;
-                  return DetailsScreen(
-                    character: character,
-                  );
-                },
-              )
-            ]),
+          path: 'search_character',
+          builder: (context, state) {
+            return const SearchCharacterScreen();
+          },
+          routes: [
+            GoRoute(
+              path: 'details',
+              builder: (context, state) {
+                final character = state.extra as Character;
+                return DetailsScreen(
+                  character: character,
+                );
+              },
+            ),
+          ],
+        ),
       ],
     ),
   ],
@@ -91,6 +93,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               SearchCharacterBloc()..add(GetSearchCharacterEvent(query: '')),
+        ),
+        BlocProvider(
+          create: (context) => CharacterEpisodeBloc()
+            ..add(GetCharacterEpisodeEvent(character: Character())),
         ),
       ],
       child: MaterialApp.router(

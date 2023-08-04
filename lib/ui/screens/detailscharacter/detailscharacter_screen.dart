@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rickandmorty/bloc/charac_episode/charac_episode_bloc.dart';
 import 'package:rickandmorty/domain/models/character_models.dart';
 import 'package:rickandmorty/ui/screens/detailscharacter/widget/animated_displacement.dart';
+import 'package:rickandmorty/ui/screens/detailscharacter/widget/text_span_data.dart';
+import 'package:rickandmorty/ui/screens/episodes/episodes_screen.dart';
 import 'package:rickandmorty/ui/widgets/bottom_pop.dart';
+import 'package:rickandmorty/ui/widgets/loading_widget.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({
@@ -9,12 +14,20 @@ class DetailsScreen extends StatefulWidget {
     required this.character,
   }) : super(key: key);
   final Character character;
-
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  CharacterEpisodeBloc _characterEpisodeBloc = CharacterEpisodeBloc();
+  @override
+  void initState() {
+    _characterEpisodeBloc = context.read<CharacterEpisodeBloc>();
+    _characterEpisodeBloc
+        .add(GetCharacterEpisodeEvent(character: widget.character));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -45,6 +58,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
                       children: [
@@ -151,9 +165,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ],
                     ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Episodes:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     Expanded(
-                      child: Container(
-                        color: Colors.red,
+                      child: BlocBuilder<CharacterEpisodeBloc,
+                          CharacterEpisodeState>(
+                        builder: (context, state) {
+                          switch (state.status) {
+                            case CharacterEpisodeStatus.loading:
+                              return const LoadingWidget();
+                            case CharacterEpisodeStatus.success:
+                              if (state.posts.isEmpty) {
+                                return const Center(
+                                  child: Text("No Characters"),
+                                );
+                              }
+                              return ListView.builder(
+                                itemCount: state.posts.length,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return index >= state.posts.length
+                                      ? const LoadingWidget()
+                                      : EpisodeItem(
+                                          episode: state.posts[index]);
+                                },
+                              );
+                            case CharacterEpisodeStatus.error:
+                              return Center(child: Text(state.errorMessage));
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -166,43 +212,3 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 }
-
-class TextSpanData extends StatelessWidget {
-  const TextSpanData({
-    Key? key,
-    required this.title,
-    required this.text,
-  }) : super(key: key);
-  final String title;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      maxLines: 1,
-      text: TextSpan(
-        text: title,
-        style: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.normal, height: 1.2),
-        children: [
-          TextSpan(
-            text: text,
-            style: const TextStyle(
-              overflow: TextOverflow.ellipsis,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/*
-
-Positioned(
-            bottom: 0,
-            child: 
-          ),
- */
