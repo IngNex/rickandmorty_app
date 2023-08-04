@@ -11,6 +11,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.go('/login');
+        },
+        elevation: 5,
+        tooltip: 'Log out',
+        backgroundColor: Colors.redAccent.shade200,
+        child: const Icon(Icons.logout),
+      ),
       body: SafeArea(
           child: Column(
         children: [
