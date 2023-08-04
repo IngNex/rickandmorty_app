@@ -105,7 +105,7 @@ class _SearchCharacterScreenState extends State<SearchCharacterScreen> {
                     case CharactersStatus.success:
                       if (state.posts.isEmpty) {
                         return const Center(
-                          child: Text("No Characters"),
+                          child: Text("Error Connection o No Characters"),
                         );
                       }
                       return ListView.builder(

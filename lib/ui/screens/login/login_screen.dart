@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             vertical: 20.0, horizontal: 25.0),
                         child: Text(
-                          'exaple@gmail.com',
+                          'example@gmail.com',
                         ),
                       ),
                     ),

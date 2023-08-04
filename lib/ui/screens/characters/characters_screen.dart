@@ -56,7 +56,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
                     case CharactersStatus.success:
                       if (state.posts.isEmpty) {
                         return const Center(
-                          child: Text("No Characters"),
+                          child: Text("Error Connection o No Characters"),
                         );
                       }
                       return GridView.builder(

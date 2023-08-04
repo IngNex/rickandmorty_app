@@ -199,7 +199,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 case CharacterEpisodeStatus.success:
                                   if (state.posts.isEmpty) {
                                     return const Center(
-                                      child: Text("No Characters"),
+                                      child: Text(
+                                          "Error Connection o No Episodes"),
                                     );
                                   }
                                   return ListView.builder(

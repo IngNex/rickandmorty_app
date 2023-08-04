@@ -53,28 +53,32 @@ class HomeScreen extends StatelessWidget {
           ),
           Expanded(
             child: AnimationTranslate(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ButtonText(
-                    tap: () {
-                      context.go('/home/characters');
-                    },
-                    text: 'Characters',
-                  ),
-                  ButtonText(
-                    tap: () {
-                      context.go('/home/episodes');
-                    },
-                    text: 'Episodes',
-                  ),
-                  ButtonText(
-                    tap: () {
-                      context.go('/home/search_character');
-                    },
-                    text: 'Search Character',
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ButtonText(
+                      tap: () {
+                        context.go('/home/characters');
+                      },
+                      text: 'Characters',
+                    ),
+                    ButtonText(
+                      tap: () {
+                        context.go('/home/episodes');
+                      },
+                      text: 'Episodes',
+                    ),
+                    ButtonText(
+                      tap: () {
+                        context.go('/home/search_character');
+                      },
+                      text: 'Search Character',
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

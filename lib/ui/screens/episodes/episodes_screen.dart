@@ -56,7 +56,7 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
                     case EpisodesStatus.success:
                       if (state.posts.isEmpty) {
                         return const Center(
-                          child: Text("No Episodes"),
+                          child: Text("Error Connection o No Episodes"),
                         );
                       }
                       return GridView.builder(

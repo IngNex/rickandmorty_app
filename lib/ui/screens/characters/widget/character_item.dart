@@ -92,11 +92,3 @@ class CharacterItem extends StatelessWidget {
     );
   }
 }
-
-
-          // CircleAvatar(
-          //         radius: 45,
-          //         backgroundImage: NetworkImage(character.image!),
-          //         backgroundColor: Colors.green,
-          //       ),
-          //     ),
