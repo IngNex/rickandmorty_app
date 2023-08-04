@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:rickandmorty/domain/models/character_models.dart';
 import 'package:rickandmorty/domain/models/episode_models.dart';
-//import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class ApiProvider {
   final dio = Dio();
   final String url = 'https://rickandmortyapi.com/';
-
   Future<List<Character>> getCharacters([int page = 1]) async {
     try {
       Response result = await dio.get('$url/api/character?page=$page');
@@ -40,5 +39,15 @@ class ApiProvider {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<List<Episode>> getEpisodesCharater(Character character) async {
+    List<Episode> episodes = [];
+    for (int i = 0; i < character.episode!.length; i++) {
+      final result = await http.get(Uri.parse(character.episode![i]));
+      final response = episodeFromJson(result.body);
+      episodes.add(response);
+    }
+    return episodes;
   }
 }

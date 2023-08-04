@@ -16,7 +16,7 @@ class ButtonText extends StatelessWidget {
       onTap: tap,
       child: Container(
         width: 200,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
           color: Colors.green,
           borderRadius: BorderRadius.circular(20.0),
