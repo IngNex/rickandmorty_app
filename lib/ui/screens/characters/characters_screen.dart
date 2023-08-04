@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rickandmorty/bloc/characters/characters_bloc.dart';
 import 'package:rickandmorty/ui/screens/characters/widget/character_item.dart';
 import 'package:rickandmorty/ui/widgets/animation_translate.dart';
-import 'package:rickandmorty/ui/widgets/bottom_pop.dart';
+import 'package:rickandmorty/ui/widgets/app_bar_image.dart';
 import 'package:rickandmorty/ui/widgets/loading_widget.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -39,40 +39,12 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
-          AnimationTranslate(
+          const AnimationTranslate(
             top: false,
-            child: Stack(
-              children: [
-                Container(
-                  width: size.width,
-                  height: 140,
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                    color: Colors.black,
-                  ),
-                  child: const Image(
-                    image: AssetImage('assets/gif/rickandmorty.gif'),
-                  ),
-                ),
-                const Positioned(top: 30, left: 3, child: BottomPop())
-              ],
-            ),
+            child: AppBarImage(),
           ),
           Expanded(
             child: AnimationTranslate(

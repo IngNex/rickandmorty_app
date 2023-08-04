@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rickandmorty/domain/models/character_models.dart';
+import 'package:rickandmorty/ui/widgets/animation_translate.dart';
 
 class AnimatedDisplacement extends StatefulWidget {
   const AnimatedDisplacement({
@@ -52,8 +53,8 @@ class _AnimatedDisplacementState extends State<AnimatedDisplacement>
               ),
             ),
             Positioned(
-              top: 0,
-              bottom: 0,
+              top: 150,
+              bottom: -15,
               left: 0,
               right: 0,
               child: Container(
@@ -61,10 +62,7 @@ class _AnimatedDisplacementState extends State<AnimatedDisplacement>
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.greenAccent.shade400.withOpacity(0.2)
-                    ],
+                    colors: [Colors.transparent, Colors.greenAccent.shade400],
                   ),
                 ),
               ),
@@ -73,14 +71,17 @@ class _AnimatedDisplacementState extends State<AnimatedDisplacement>
               bottom: -20,
               left: 100 * _controller.value,
               right: 100 * (1 - _controller.value),
-              child: Text(
-                widget.character.name!,
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 45,
-                  fontWeight: FontWeight.bold,
-                  shadows: [Shadow(blurRadius: 3, color: Colors.grey)],
+              child: AnimationTranslate(
+                top: false,
+                child: Text(
+                  widget.character.name!,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold,
+                    shadows: [Shadow(blurRadius: 3, color: Colors.grey)],
+                  ),
                 ),
               ),
             ),

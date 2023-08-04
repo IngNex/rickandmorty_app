@@ -5,6 +5,8 @@ import 'package:rickandmorty/bloc/characters/characters_bloc.dart';
 import 'package:rickandmorty/bloc/search_character/search_character_bloc.dart';
 import 'package:rickandmorty/ui/screens/searchcharacter/widget/listtitle_character_item.dart';
 import 'package:rickandmorty/ui/screens/searchcharacter/widget/search_delegate.dart';
+import 'package:rickandmorty/ui/widgets/animation_translate.dart';
+import 'package:rickandmorty/ui/widgets/app_bar_image.dart';
 import 'package:rickandmorty/ui/widgets/loading_widget.dart';
 
 class SearchCharacterScreen extends StatefulWidget {
@@ -41,44 +43,60 @@ class _SearchCharacterScreenState extends State<SearchCharacterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Search Character'),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              child: GestureDetector(
-                onTap: () {
-                  showSearch(
-                    context: context,
-                    delegate: SearchCharacter(
-                      searchBloc: context.read<SearchCharacterBloc>(),
+      body: Column(
+        children: [
+          const AnimationTranslate(
+            top: false,
+            child: AppBarImage(),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
+            child: TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 800),
+                tween: Tween(begin: 0.0, end: 1.0),
+                curve: Curves.elasticInOut,
+                builder: (context, value, child) {
+                  return Transform.scale(
+                    scale: value,
+                    child: GestureDetector(
+                      onTap: () {
+                        showSearch(
+                          context: context,
+                          delegate: SearchCharacter(
+                            searchBloc: context.read<SearchCharacterBloc>(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.grey,
+                          border:
+                              Border.all(width: 2, color: Colors.grey.shade600),
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(Icons.search, size: 30),
+                            SizedBox(width: 10),
+                            Text(
+                              'Search Character...',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   );
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.grey,
-                    border: Border.all(width: 2, color: Colors.grey.shade600),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(Icons.search),
-                      SizedBox(width: 10),
-                      Text('Search Character...'),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
+                }),
+          ),
+          Expanded(
+            child: AnimationTranslate(
+              offset: 180.0,
               child: BlocBuilder<CharactersBloc, CharactersState>(
                 builder: (context, state) {
                   switch (state.status) {
@@ -100,7 +118,8 @@ class _SearchCharacterScreenState extends State<SearchCharacterScreen> {
                           return index >= state.posts.length
                               ? const LoadingWidget()
                               : ListTitleCharacterItem(
-                                  character: state.posts[index]);
+                                  character: state.posts[index],
+                                );
                         },
                       );
 
@@ -110,8 +129,8 @@ class _SearchCharacterScreenState extends State<SearchCharacterScreen> {
                 },
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
