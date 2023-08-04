@@ -59,16 +59,21 @@ dev_dependencies:
   <img src="https://i.ibb.co/xH6hWYH/splash.jpg" alt="drawing" width="200px" hspace="10"/> 
   <img src="https://i.ibb.co/HHj1Gmh/login-light.jpg" alt="drawing" width="200px" hspace="10"/> 
   <img src="https://i.ibb.co/PrLryfM/home-light.jpg" alt="drawing" width="200px" hspace="10"/> 
-  <img src="https://i.ibb.co/YWY9JJS/characters-light.jpg" alt="drawing" width="200px" hspace="10"/> 
+  
 </p>
 <p align="center">
+  <img src="https://i.ibb.co/YWY9JJS/characters-light.jpg" alt="drawing" width="200px" hspace="10"/> 
   <img src="https://i.ibb.co/zxgfsSw/character-light.jpg" alt="drawing" width="200px" hspace="10"/> 
   <img src="https://i.ibb.co/34MztSg/episodes-light.jpg" alt="drawing" width="200px" hspace="10"/> 
-  <img src="https://i.ibb.co/zrcX1K3/search-character-light.jpg" alt="drawing" width="200px" hspace="10"/> 
-  <img src="https://i.ibb.co/Bwc2V6P/search-light.jpg" alt="drawing" width="200px" hspace="10"/> 
+   
 </p>
 <p align="center">
+  <img src="https://i.ibb.co/zrcX1K3/search-character-light.jpg" alt="drawing" width="200px" hspace="10"/> 
+  <img src="https://i.ibb.co/Bwc2V6P/search-light.jpg" alt="drawing" width="200px" hspace="10"/>
   <img src="https://i.ibb.co/tXZWmxX/login-dark.jpg" alt="drawing" width="200px" hspace="10"/> 
+  
+</p>
+<p align="center">
   <img src="https://i.ibb.co/tBmNMPZ/home-dark.jpg" alt="drawing" width="200px" hspace="10"/> 
   <img src="https://i.ibb.co/mFC2DXG/characters-dark.jpg" alt="drawing" width="200px" hspace="10"/> 
   <img src="https://i.ibb.co/JcPQMk8/character-dark.jpg" alt="drawing" width="200px" hspace="10"/> 
@@ -81,7 +86,7 @@ dev_dependencies:
 
 ## Video de la App en Android
 <p align="center">
-  <img src="https://i.pinimg.com/originals/88/cc/08/88cc085640f21f28a4855e459c2f6f3e.gif">
+  <img src="https://i.pinimg.com/originals/88/cc/08/88cc085640f21f28a4855e459c2f6f3e.gif" width="200px" hspace="10"/>
 </p>
 
 [Video App RickandMorty](https://i.pinimg.com/originals/88/cc/08/88cc085640f21f28a4855e459c2f6f3e.gif)
